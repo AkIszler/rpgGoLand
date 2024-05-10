@@ -43,7 +43,7 @@ type Class struct {
 
 var WizardClass = Class{
 	Name:      "Wizard",
-	HPchange:  +2,
+	HPchange:  2,
 	Atkchange: -1,
 	Defchange: -2,
 	Intchange: +5,
@@ -54,7 +54,7 @@ var WizardClass = Class{
 
 var WarriorClass = Class{
 	Name:      "Warrior",
-	HPchange:  +6,
+	HPchange:  6,
 	Atkchange: +5,
 	Defchange: +3,
 	Intchange: -1,
