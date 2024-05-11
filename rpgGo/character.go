@@ -42,36 +42,37 @@ type Class struct {
 }
 
 var WizardClass = Class{
+
 	Name:      "Wizard",
-	HPchange:  2,
-	Atkchange: -1,
-	Defchange: -2,
-	Intchange: +5,
-	Dexchange: +1,
-	Wischange: +2,
-	Chachange: +0,
+	HPchange:  baseCharacter.HP + 3,
+	Atkchange: baseCharacter.Atk + 3,
+	Defchange: baseCharacter.Def + 3,
+	Intchange: baseCharacter.Int - 2,
+	Dexchange: baseCharacter.Dex - 1,
+	Wischange: baseCharacter.Wis - 2,
+	Chachange: baseCharacter.Cha - 2,
 }
 
 var WarriorClass = Class{
 	Name:      "Warrior",
-	HPchange:  6,
-	Atkchange: +5,
-	Defchange: +3,
-	Intchange: -1,
-	Dexchange: 0,
-	Wischange: -1,
-	Chachange: -1,
+	HPchange:  baseCharacter.HP + 3,
+	Atkchange: baseCharacter.Atk + 3,
+	Defchange: baseCharacter.Def + 3,
+	Intchange: baseCharacter.Int - 2,
+	Dexchange: baseCharacter.Dex - 1,
+	Wischange: baseCharacter.Wis - 2,
+	Chachange: baseCharacter.Cha - 2,
 }
 
 var RogueClass = Class{
 	Name:      "Rogue",
-	HPchange:  0,
-	Atkchange: +1,
-	Defchange: -2,
-	Intchange: -1,
-	Dexchange: +4,
-	Wischange: +1,
-	Chachange: +3,
+	HPchange:  baseCharacter.HP + 3,
+	Atkchange: baseCharacter.Atk + 3,
+	Defchange: baseCharacter.Def + 3,
+	Intchange: baseCharacter.Int - 2,
+	Dexchange: baseCharacter.Dex - 1,
+	Wischange: baseCharacter.Wis - 2,
+	Chachange: baseCharacter.Cha - 2,
 }
 
 // Define some sample data
