@@ -39,10 +39,18 @@ func BuildCharacter(cn string, class rpgGo.Class) ([]string, map[string]int) {
 
 func main() {
 
-	fmt.Println("Hello, 世界")
+	fmt.Println("Welcome to GoLang Island!")
 
-	class := pickClass("Wizard")
+	fmt.Println("What is your name?")
+	var name string
+	fmt.Scanln(&name)
+	fmt.Println("Hello,", name)
+	fmt.Println("What class are you?")
+	var class string
+	fmt.Scanln(&class)
 
-	fmt.Println(BuildCharacter("Tony", class))
+	classPick := pickClass(class)
+
+	fmt.Println(BuildCharacter(name, classPick))
 
 }
