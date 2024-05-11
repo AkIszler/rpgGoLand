@@ -1,0 +1,39 @@
+Magic system Ideas
+
+
+
+Level based system Wizard
+
+1.Magic Missile, Absorb, Shock, Mend
+2.Fireball, Healing Hand, Dust 
+3.Fear, Dispel, Fire Wall, Shake Ground
+4.Lighting Bolt, Fire Storm, Healing Fairy, Rampage
+5.Arcane Blast, Power Within, Magic Hand, Control
+7.Pain, Regenerate, Dispel Item, Magic Blast
+8.Arcane Arc, Magma Blast, Earth Wall, Self-Hate
+9.Phase, Power Unleashed, Barrier, Open Void
+
+Level based system Warrior
+
+1. Stand Tall, Heavy Hit
+2. Rage, power stance
+3. Duel Strike
+4. Rampage Strike
+5. Ground shatter
+
+Level based system Rogue
+
+1.Shroud 
+2.Sneak Attack
+3.Evade 
+4.Return Strike
+5.Decay Strike
+
+
+
+Spells 
+
+Magic Missile - Base dmg (2 X multiplier) / 2  Cost (4 mana)
+Absorb - Base dmg (1.5X multiplier) / 2 Cost (3 mana) Health + (Base dmg / 2) [cannot override MaxHP]
+Shock - Base dmg (3 x multiplier) /2 Cost (6 mana) (4% chance to stun target for 1 turn)
+Mend - No damage Health + 3 (cost 2 mana)
