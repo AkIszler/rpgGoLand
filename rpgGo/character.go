@@ -1,6 +1,8 @@
 package rpgGo
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Character struct {
 	Name  string
@@ -91,7 +93,7 @@ func PickClass() Class {
 
 	for {
 		fmt.Println("What class are you?")
-		fmt.Println("1. Wizard\n2.Warrior\n3.Rogue")
+		fmt.Println("1. Wizard\n2. Warrior\n3. Rogue")
 		fmt.Scanln(&classpicked)
 
 		if classpicked == "1" {
@@ -111,10 +113,11 @@ func PickClass() Class {
 	return classPicked
 }
 
-func BuildCharacter(cn string, class Class) ([]string, map[string]int, map[string]int) {
+func BuildCharacter(cn string, class Class) ([]string, map[string]int, map[string]int, Items) {
 	characterStats := make(map[string]int)
 	characterHpMana := make(map[string]int)
 	var character []string
+	var items Items
 	//name
 	character = append(character, cn)
 	character = append(character, class.Name)
@@ -125,9 +128,52 @@ func BuildCharacter(cn string, class Class) ([]string, map[string]int, map[strin
 	characterStats["Dex"] = class.Dexchange
 	characterStats["Wis"] = class.Wischange
 	characterStats["Cha"] = class.Chachange
-	//hp Mana
+	//hp Manas
 	characterHpMana["HP"] = class.HPchange
 	characterHpMana["Mana"] = class.ManaChange
+	//get base gear
+	items = GetStartingItems(class)
+	return character, characterStats, characterHpMana, items
+}
 
-	return character, characterStats, characterHpMana
+type Items struct {
+	Name         string
+	ID           int
+	Dmg          int
+	RequireMagic bool
+}
+
+var Sword = Items{
+	Name:         "Sword",
+	ID:           1,
+	Dmg:          5,
+	RequireMagic: false,
+}
+
+var Staff = Items{
+	Name:         "Staff",
+	ID:           2,
+	Dmg:          2,
+	RequireMagic: true,
+}
+
+var Knife = Items{
+	Name:         "Knife",
+	ID:           3,
+	Dmg:          1 * 2,
+	RequireMagic: false,
+}
+
+func GetStartingItems(class Class) Items {
+
+	var item Items
+
+	if class == WarriorClass {
+		item = Sword
+	} else if class == WizardClass {
+		item = Staff
+	} else if class == RogueClass {
+		item = Knife
+	}
+	return item
 }
