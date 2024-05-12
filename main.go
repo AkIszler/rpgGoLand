@@ -5,37 +5,52 @@ import (
 	"rpgGo/rpgGo"
 )
 
-func pickClass(class string) rpgGo.Class {
-	var classPicked rpgGo.Class
-	switch class {
-	case "Wizard":
-		classPicked = rpgGo.WizardClass
-	case "Warrior":
-		classPicked = rpgGo.WarriorClass
-	default:
-		classPicked = rpgGo.RogueClass
-	}
+// func pickClass() rpgGo.Class {
+// 	var classPicked rpgGo.Class
+// 	classpicked := ""
 
-	return classPicked
-}
+// 	for {
+// 		fmt.Println("What class are you?")
+// 		fmt.Println("1. Wizard\n2.Warrior\n3.Rogue")
+// 		fmt.Scanln(&classpicked)
 
-func BuildCharacter(cn string, class rpgGo.Class) ([]string, map[string]int) {
-	characterStats := make(map[string]int)
-	var character []string
+// 		if classpicked == "1" {
+// 			classPicked = rpgGo.WizardClass
+// 			break
+// 		} else if classpicked == "2" {
+// 			classPicked = rpgGo.WarriorClass
+// 			break
+// 		} else if classpicked == "3" {
+// 			classPicked = rpgGo.RogueClass
+// 			break
+// 		} else {
+// 			fmt.Println("Invalid input")
+// 		}
+// 	}
 
-	character = append(character, cn)
-	character = append(character, class.Name)
+// 	return classPicked
+// }
 
-	characterStats["HP"] = class.HPchange
-	characterStats["Atk"] = class.Atkchange
-	characterStats["Def"] = class.Defchange
-	characterStats["Int"] = class.Intchange
-	characterStats["Dex"] = class.Dexchange
-	characterStats["Wis"] = class.Wischange
-	characterStats["Cha"] = class.Chachange
+// func BuildCharacter(cn string, class rpgGo.Class) ([]string, map[string]int, map[string]int) {
+// 	characterStats := make(map[string]int)
+// 	characterHpMana := make(map[string]int)
+// 	var character []string
 
-	return character, characterStats
-}
+// 	character = append(character, cn)
+// 	character = append(character, class.Name)
+
+// 	characterStats["Atk"] = class.Atkchange
+// 	characterStats["Def"] = class.Defchange
+// 	characterStats["Int"] = class.Intchange
+// 	characterStats["Dex"] = class.Dexchange
+// 	characterStats["Wis"] = class.Wischange
+// 	characterStats["Cha"] = class.Chachange
+
+// 	characterHpMana["HP"] = class.HPchange
+// 	characterHpMana["HP"] = class.ManaChange
+
+// 	return character, characterStats, characterHpMana
+// }
 
 func main() {
 
@@ -45,12 +60,9 @@ func main() {
 	var name string
 	fmt.Scanln(&name)
 	fmt.Println("Hello,", name)
-	fmt.Println("What class are you?")
-	var class string
-	fmt.Scanln(&class)
 
-	classPick := pickClass(class)
+	classPick := rpgGo.PickClass()
 
-	fmt.Println(BuildCharacter(name, classPick))
+	fmt.Println(rpgGo.BuildCharacter(name, classPick))
 
 }
