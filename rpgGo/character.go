@@ -75,14 +75,14 @@ var WarriorClass = Class{
 
 var RogueClass = Class{
 	Name:       "Rogue",
-	HPchange:   baseCharacter.HP + 3,
-	ManaChange: baseCharacter.Mana - 3,
-	Atkchange:  baseCharacter.Atk + 3,
-	Defchange:  baseCharacter.Def + 3,
-	Intchange:  baseCharacter.Int - 2,
-	Dexchange:  baseCharacter.Dex - 1,
-	Wischange:  baseCharacter.Wis - 2,
-	Chachange:  baseCharacter.Cha - 2,
+	HPchange:   baseCharacter.HP,
+	ManaChange: baseCharacter.Mana - 2,
+	Atkchange:  baseCharacter.Atk + 1,
+	Defchange:  baseCharacter.Def - 2,
+	Intchange:  baseCharacter.Int,
+	Dexchange:  baseCharacter.Dex + 5,
+	Wischange:  baseCharacter.Wis + 2,
+	Chachange:  baseCharacter.Cha + 1,
 }
 
 // Define some sample data
@@ -113,11 +113,11 @@ func PickClass() Class {
 	return classPicked
 }
 
-func BuildCharacter(cn string, class Class) ([]string, map[string]int, map[string]int, Items) {
+func BuildCharacter(cn string, class Class) ([]string, map[string]int, map[string]int, map[string]int) {
 	characterStats := make(map[string]int)
 	characterHpMana := make(map[string]int)
 	var character []string
-	var items Items
+	var items = GetStartingItems(class)
 	//name
 	character = append(character, cn)
 	character = append(character, class.Name)
@@ -132,7 +132,6 @@ func BuildCharacter(cn string, class Class) ([]string, map[string]int, map[strin
 	characterHpMana["HP"] = class.HPchange
 	characterHpMana["Mana"] = class.ManaChange
 	//get base gear
-	items = GetStartingItems(class)
 	return character, characterStats, characterHpMana, items
 }
 
@@ -164,16 +163,16 @@ var Knife = Items{
 	RequireMagic: false,
 }
 
-func GetStartingItems(class Class) Items {
+func GetStartingItems(class Class) map[string]int {
 
-	var item Items
+	var item = make(map[string]int)
 
 	if class == WarriorClass {
-		item = Sword
+		item[Sword.Name] = Sword.Dmg
 	} else if class == WizardClass {
-		item = Staff
+		item[Staff.Name] = Staff.Dmg
 	} else if class == RogueClass {
-		item = Knife
+		item[Knife.Name] = Knife.Dmg
 	}
 	return item
 }
