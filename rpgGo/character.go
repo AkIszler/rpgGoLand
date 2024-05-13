@@ -8,6 +8,7 @@ type Character struct {
 	Name  string
 	Class string
 	Level int
+	Exp   int
 	HP    int
 	Mana  int
 	Atk   int
@@ -34,6 +35,20 @@ var baseCharacter = Character{
 	Cha:   4,
 
 	// Add more fields as needed
+}
+
+type PlayerExp struct {
+	Level    int
+	Exp      int
+	NextLvl  int
+	LevelMod int
+}
+
+var basePlayerExp = PlayerExp{
+	Level:    1,
+	Exp:      0,
+	NextLvl:  10,
+	LevelMod: 2,
 }
 
 type Class struct {
@@ -113,9 +128,10 @@ func PickClass() Class {
 	return classPicked
 }
 
-func BuildCharacter(cn string, class Class) ([]string, map[string]int, map[string]int, map[string]int) {
+func BuildCharacter(cn string, class Class) ([]string, map[string]int, map[string]int, map[string]int, map[string]int) {
 	characterStats := make(map[string]int)
 	characterHpMana := make(map[string]int)
+	characterLevel := make(map[string]int)
 	var character []string
 	var items = GetStartingItems(class)
 	//name
@@ -132,47 +148,22 @@ func BuildCharacter(cn string, class Class) ([]string, map[string]int, map[strin
 	characterHpMana["HP"] = class.HPchange
 	characterHpMana["Mana"] = class.ManaChange
 	//get base gear
-	return character, characterStats, characterHpMana, items
+
+	characterLevel["Level"] = basePlayerExp.Level
+	characterLevel["Exp"] = basePlayerExp.Exp
+	characterLevel["NextLvl"] = basePlayerExp.NextLvl
+	characterLevel["LevelMod"] = basePlayerExp.LevelMod
+
+	return character, characterStats, characterHpMana, items, characterLevel
 }
 
-type Items struct {
-	Name         string
-	ID           int
-	Dmg          int
-	RequireMagic bool
-}
+func BuildLevelInfo() map[string]int {
 
-var Sword = Items{
-	Name:         "Sword",
-	ID:           1,
-	Dmg:          5,
-	RequireMagic: false,
-}
+	levelInfo := make(map[string]int)
+	levelInfo["Level"] = 1
+	levelInfo["Exp"] = 0
+	levelInfo["NextLvl"] = 15
+	levelInfo["LevelMod"] = 2
 
-var Staff = Items{
-	Name:         "Staff",
-	ID:           2,
-	Dmg:          2,
-	RequireMagic: true,
-}
-
-var Knife = Items{
-	Name:         "Knife",
-	ID:           3,
-	Dmg:          1 * 2,
-	RequireMagic: false,
-}
-
-func GetStartingItems(class Class) map[string]int {
-
-	var item = make(map[string]int)
-
-	if class == WarriorClass {
-		item[Sword.Name] = Sword.Dmg
-	} else if class == WizardClass {
-		item[Staff.Name] = Staff.Dmg
-	} else if class == RogueClass {
-		item[Knife.Name] = Knife.Dmg
-	}
-	return item
+	return levelInfo
 }
