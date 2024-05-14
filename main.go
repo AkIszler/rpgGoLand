@@ -5,8 +5,23 @@ import (
 	"rpgGo/rpgGo"
 )
 
-func FinishCharacter(name map[string]stri, Stats map[string]rpgGo.Character, Life map[string]rpgGo.Character, Items map[string]rpgGo.Items, Level map[string]rpgGo.PlayerExp) {
+type CharacterInfo struct {
+	Name  []string
+	Stats map[string]int
+	Life  map[string]int
+	Items map[string]int
+	Level map[string]int
+}
 
+func FinishCharacter(name []string, Stats map[string]int, Life map[string]int, Items map[string]int, Level map[string]int) CharacterInfo {
+
+	return CharacterInfo{
+		Name:  name,
+		Stats: Stats,
+		Life:  Life,
+		Items: Items,
+		Level: Level,
+	}
 }
 
 func main() {
@@ -21,6 +36,8 @@ func main() {
 	classPick := rpgGo.PickClass()
 	Character, Stats, HpM, Items, Level := rpgGo.BuildCharacter(name, classPick)
 	// levelInfo := rpgGo.BuildLevelInfo()
-	FinishCharacter(Character, Stats, HpM, Items, Level)
+	theGuy := FinishCharacter(Character, Stats, HpM, Items, Level)
+
+	fmt.Println("\n", theGuy.Name, "\n", theGuy.Stats, "\n", theGuy.Life, "\n", theGuy.Items, "\n", theGuy.Level)
 
 }
